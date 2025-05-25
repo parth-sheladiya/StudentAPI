@@ -1,4 +1,6 @@
-﻿namespace StudentAPI.Model.DTO
+﻿using Newtonsoft.Json;
+
+namespace StudentAPI.Model.DTO
 {
     /// <summary>
     /// student dto model
@@ -8,7 +10,8 @@
         /// <summary>
         /// student id
         /// </summary>
-        //public int id { get; set; }
+        [JsonIgnore]
+        public int id { get; set; }
 
         /// <summary>
         /// student fullname

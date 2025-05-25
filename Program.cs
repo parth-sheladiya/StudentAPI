@@ -1,3 +1,5 @@
+using ServiceStack.Data;
+using ServiceStack.OrmLite;
 using StudentAPI.BL.Interface;
 using StudentAPI.BL.Operations;
 using StudentAPI.Model;
@@ -7,6 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ? Add this line to register controller services
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<IDbConnectionFactory>(
+    new OrmLiteConnectionFactory(
+        builder.Configuration.GetConnectionString("StudentApi"),
+        MySqlDialect.Provider // ya SqlServerDialect.Provider, jaise DB ho
+    )
+);
 
 
 //builder.Services.AddScoped<Response>();

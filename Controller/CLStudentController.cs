@@ -19,7 +19,7 @@ namespace StudentAPI.Controller
 
         private IBLStudentHandler _objStudentHandler;
 
-        
+
 
         /// <summary>
         /// constructor
@@ -28,7 +28,7 @@ namespace StudentAPI.Controller
         /// <param name="objStudentHandler">Student handler</param>
         public CLStudentController(IBLStudentHandler objStudentHandler)
         {
-            
+
             _objStudentHandler = objStudentHandler;
         }
 
@@ -71,8 +71,12 @@ namespace StudentAPI.Controller
             // presave method 
             _objStudentHandler.PreSave(ObjStudentDTO);
 
-            // validation method 
-            _objResponse = _objStudentHandler.Validation();
+            if (_objResponse == null)
+            {
+                _objResponse = new Response();  // Empty response object
+                _objResponse.IsError = false;   // Default safe value
+            }
+
 
             // if not any error 
             if (!_objResponse.IsError)
@@ -80,11 +84,59 @@ namespace StudentAPI.Controller
                 // save method
                 _objResponse = _objStudentHandler.Save();
             }
-            
+
+            // return response
+            return Ok(_objResponse);
+        }
+
+        [HttpPut]
+        [Route("UpdateStudent")]
+        public IActionResult UpdateStudent(int id, StudentDTO ObjStudentDTO)
+        {
+            // operation type
+            _objStudentHandler.typeOfOperation = OperationType.U;
+            // presave method 
+            _objStudentHandler.PreSave(ObjStudentDTO);
+
+            if (_objResponse == null)
+            {
+                _objResponse = new Response();  // Empty response object
+                _objResponse.IsError = false;   // Default safe value
+            }
+
+            // if not any error 
+            if (!_objResponse.IsError)
+            {
+                // save method
+                _objResponse = _objStudentHandler.Save();
+            }
             // return response
             return Ok(_objResponse);
         }
 
 
+        [HttpDelete]
+        [Route("DeleteStudent")]
+        public IActionResult DeleteStudent(int id)
+        {
+            // operation type
+            _objStudentHandler.typeOfOperation = OperationType.D;
+
+            if (_objResponse == null)
+            {
+                _objResponse = new Response();  // Empty response object
+                _objResponse.IsError = false;   // Default safe value
+            }
+
+            // if not any error 
+            if (!_objResponse.IsError)
+            {
+                // save method
+                _objResponse = _objStudentHandler.DeleteStudent(id);
+            }
+
+            // return response
+            return Ok(_objResponse);
+        }
     }
 }

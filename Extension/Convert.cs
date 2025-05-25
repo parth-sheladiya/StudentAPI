@@ -25,7 +25,7 @@ namespace StudentAPI.Extension
             // return new poco
             return new Student
             {
-                //id = dto.id,
+                id = dto.id,
                 firstName = firstName,
                 lastName = lastName,
                 Class = dto.Class,

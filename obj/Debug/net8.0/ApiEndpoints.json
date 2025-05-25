@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "StudentAPI.Controller.CLStudentController",
+    "Method": "DeleteStudent",
+    "RelativePath": "api/CLStudent/DeleteStudent",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentAPI.Controller.CLStudentController",
     "Method": "GetAllStudent",
     "RelativePath": "api/CLStudent/GetAllStudent",
     "HttpMethod": "GET",
@@ -37,6 +53,27 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentAPI.Controller.CLStudentController",
+    "Method": "UpdateStudent",
+    "RelativePath": "api/CLStudent/UpdateStudent",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "ObjStudentDTO",
+        "Type": "StudentAPI.Model.DTO.StudentDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
